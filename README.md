@@ -37,11 +37,8 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
+# run both client dev server and nestjs server
+$ npm run dev
 
 # production mode
 $ npm run start:prod
