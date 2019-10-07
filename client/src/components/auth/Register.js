@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+// may change name of this component to 'SignUp'
+// edit server logic so that name, cart and saveForLater fields are added and username field is replaced by email
+// grab current items in cart and saveForLater if there are any and use those to set values in case the user started shopping before sign up
 
 // connect each input field to the state through value={input}
 // add a reusable onChange that only targets the specific state value for the input field 
 // ie [e.target.name] which grabs the name attribute of the input field ie email or password1 etc
+
+// check to see if passwords match onSubmit
+// if match then proceed to construct the registration post request to the server
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -16,12 +24,31 @@ const Register = () => {
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
         if (password !== password2) {
             console.log('Passwords do not match!');
         } else {
-            console.log(formData);
+            const newUser = {
+                name,
+                email,
+                password
+            };
+
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                const body = JSON.stringify(newUser);
+
+                const res = await axios.post('http://localhost:5000/auth/signup', body, config);
+                console.log(res.data);
+            } catch (err) {
+                console.log(err.response.data);
+            }
         }
     }
 
@@ -29,10 +56,13 @@ const Register = () => {
         <>
             <h1 className="large text-primary">Sign Up</h1>
             <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
+
             <form className="form" onSubmit={e => onSubmit(e)}>
+
                 <div className="form-group">
                     <input type="text" placeholder="Name" name="name" value={name} onChange={e => onChange(e)} required />
                 </div>
+
                 <div className="form-group">
                     <input type="email" placeholder="Email Address" name="email" value={email} onChange={e => onChange(e)} />
                     <small className="form-text"
@@ -40,6 +70,7 @@ const Register = () => {
             Gravatar email</small
                     >
                 </div>
+
                 <div className="form-group">
                     <input
                         type="password"
@@ -49,6 +80,7 @@ const Register = () => {
                         minLength="6"
                     />
                 </div>
+
                 <div className="form-group">
                     <input
                         type="password"
@@ -58,8 +90,11 @@ const Register = () => {
                         minLength="6"
                     />
                 </div>
+
                 <input type="submit" className="btn btn-primary" value="Register" />
+
             </form>
+
             <p className="my-1">
                 Already have an account? <a href="login.html">Sign In</a>
             </p>
