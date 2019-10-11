@@ -10,14 +10,21 @@ import Contact from './components/layout/Contact';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
-function App() {
-  return (
+// the Alert component will only display when alerts have been set
+import Alert from './components/layout/Alert';
+
+import { Provider } from 'react-redux';
+import store from './store';
+
+const App = () => (
+  <Provider store={store}>
     <Router>
       <Fragment>
         <Navbar />
         <Route exact path='/' component={Main} />
       </Fragment>
       <section className="container">
+        <Alert />
         <Switch>
           <Route exact path="/about" component={About} />
           <Route exact path="/register" component={Register} />
@@ -27,7 +34,7 @@ function App() {
         </Switch>
       </section>
     </Router>
-  );
-}
+  </Provider>
+)
 
 export default App;

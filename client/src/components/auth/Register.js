@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import Link from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
 // edit server logic so that name, email, cart and saveForLater fields are added
 // grab current items in cart and saveForLater from localStorage if there are any and use those to set values in case the user started shopping before sign up
 
-const Register = () => {
+// connect() gives the component access to props and we can destructure setAlert from these props instead of using props.setAlert to dispatch the action
+const Register = ({ setAlert }) => {
     // reach into localStorage and grab cart/saveForLater items
     const [formData, setFormData] = useState({
         name: '',
@@ -26,7 +30,7 @@ const Register = () => {
         // if match then proceed to construct the registration post request to the server
         e.preventDefault();
         if (password !== password2) {
-            console.log('Passwords do not match!');
+            setAlert('Passwords do not match', 'danger');
         } else {
             console.log('Success!')
         }
@@ -80,5 +84,10 @@ const Register = () => {
             </>
         )
     }
+}
 
-    export default Register;
+Register.PropTypes = {
+    setAlert: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(Register);
