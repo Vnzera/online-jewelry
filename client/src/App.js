@@ -1,12 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Main from './components/layout/Main';
 import Navbar from './components/layout/Navbar';
 import About from './components/layout/About';
+import Account from './components/layout/Account';
 import Cart from './components/layout/Cart';
 import Contact from './components/layout/Contact';
+
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
@@ -19,20 +21,19 @@ import store from './store';
 const App = () => (
   <Provider store={store}>
     <Router>
-      <Fragment>
+      <>
         <Navbar />
-        <Route exact path='/' component={Main} />
-      </Fragment>
-      <section className="container">
         <Alert />
         <Switch>
+          <Route exact path='/' component={Main} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/account" component={Account} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/contact" component={Contact} />
         </Switch>
-      </section>
+      </>
     </Router>
   </Provider>
 )

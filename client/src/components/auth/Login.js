@@ -1,7 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-
-import React, { useState } from 'react';
 
 const Login = () => {
     const [formData, setFormData] = useState({

@@ -1,11 +1,11 @@
 import React from 'react'
 
-// this component will make a request for the product gallery items
-
-export default function Main() {
+const Main = () => {
     return (
         <div>
-            Main Page
+            Main
         </div>
     )
 }
+
+export default Main

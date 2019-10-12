@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 // add an icon/logo to the top left
 // icon styles should be global
 // maybe put other styled elements in a separate folder
@@ -71,6 +72,9 @@ const Navbar = (isAuthenticated = false) => {
                 </li>
                 <li>
                     <Link to='/login'>Login</Link>
+                </li>
+                <li>
+                    <Link to='/register'>Login</Link>
                 </li>
                 <li>
                     <Link to='/cart'>Cart</Link>
