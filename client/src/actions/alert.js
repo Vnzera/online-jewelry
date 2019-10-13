@@ -2,7 +2,8 @@ import uuid from 'uuid';
 import { SET_ALERT, REMOVE_ALERT } from './types';
 
 // this action can be called from the component
-// this will trigger the Reducer logic aka switch case for this action.hljs-type
+// this will trigger the Reducer logic aka switch case for this actions type
+// the payload is used to send the Reducer relevant data such as an id for filtering
 // the store will be updated and changes sent to components that are subscribed
 
 export const setAlert = (msg, alertType) => dispatch => {
