@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlert } from '../actions/alert';
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL
