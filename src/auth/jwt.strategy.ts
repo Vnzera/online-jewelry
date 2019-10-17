@@ -16,7 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             secretOrKey: 'topSecret51',
         });
     }
-    // here we retrieve a user from postgres based on the JwtPayload
+    // here we retrieve a user from postgres based on the JwtPayload / email
     async validate(payload: JwtPayload): Promise<User> {
         const { email } = payload;
         const user = await this.userRepository.findOne({ email });

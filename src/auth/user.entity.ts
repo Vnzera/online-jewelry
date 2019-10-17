@@ -1,7 +1,7 @@
 import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Unique, OneToMany } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
-// unique decorator makes sure we don't have duplicate usernames stored
+// unique decorator makes sure we don't have duplicate emails stored
 // methods like validatePassword below can be called on all instances of User
 
 @Entity()
