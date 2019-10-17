@@ -3,11 +3,12 @@ import { User } from './user.entity';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { ConflictException, InternalServerErrorException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import { JwtPayload } from './jwt-payload.interface';
 
 // pull data from the user sign up request to create a new User entity to be saved
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<string> {
         const { name, email, password } = authCredentialsDto;
 
         const user = new User();
@@ -18,6 +19,8 @@ export class UserRepository extends Repository<User> {
 
         try {
             await user.save();
+            return user.email;
+
         } catch (error) {
             // 23505 error code will be thrown if the email exist because of the Unique decorator used in the User entity file
             if (error.code === '23505') { // error code for duplicate fields

@@ -13,11 +13,16 @@ export class AuthService {
         private jwtService: JwtService,
     ) { }
 
-    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-        return this.userRepository.signUp(authCredentialsDto);
+    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<{ token: string }> {
+        const email = await this.userRepository.signUp(authCredentialsDto);
+        // userRepository will throw error if signUp did not work
+
+        const payload: JwtPayload = { email };
+        const token = await this.jwtService.sign(payload);
+        return { token };
     }
 
-    async signIn(authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }> {
+    async signIn(authCredentialsDto: AuthCredentialsDto): Promise<{ token: string }> {
         const email = await this.userRepository.validateUserPassword(authCredentialsDto);
 
         if (!email) {
@@ -25,8 +30,8 @@ export class AuthService {
         }
 
         const payload: JwtPayload = { email };
-        const accessToken = await this.jwtService.sign(payload);
+        const token = await this.jwtService.sign(payload);
 
-        return { accessToken };
+        return { token };
     }
 }
