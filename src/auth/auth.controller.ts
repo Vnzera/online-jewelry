@@ -8,6 +8,8 @@ export class AuthController {
         private authService: AuthService,
     ) { }
 
+    // '/' route for verifying json web token
+
     // ValidationPipe uses DTO to validate data in the body of the request
     @Post('/signup')
     signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto) {
