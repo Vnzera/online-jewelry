@@ -9,6 +9,7 @@ export class AuthController {
     ) { }
 
     // '/' route for verifying json web token
+    // this is where you send back the user Entity without the password
 
     // ValidationPipe uses DTO to validate data in the body of the request
     @Post('/signup')

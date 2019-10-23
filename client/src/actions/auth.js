@@ -4,7 +4,9 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     USER_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -52,6 +54,7 @@ export const register = ({ name, email, password }) => async dispatch => {
             payload: res.data
         });
 
+        dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data.errors;
 
@@ -82,6 +85,8 @@ export const login = (email, password) => async dispatch => {
             type: LOGIN_SUCCESS,
             payload: res.data
         });
+
+        dispatch(loadUser());
 
     } catch (err) {
         const errors = err.response.data.errors;
