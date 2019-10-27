@@ -26,6 +26,7 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
+// dispatch an action to see if user's token is empty, valid or invalid
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
