@@ -6,8 +6,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { UnauthorizedException } from '@nestjs/common';
 
+// this strategy can be used by an AuthGuard to protect a route
+// jwt is taken from the header and verified using the secret provided
+// either an exception will be thrown if the token is not valid or the user isn't found or Passport will return a user object
+
 export class JwtStrategy extends PassportStrategy(Strategy) {
-    constructor( // connect UserRepository so we can retrieve a user entity later
+    constructor( // connect UserRepository so we can retrieve a user entity
         @InjectRepository(UserRepository)
         private userRepository: UserRepository,
     ) {
@@ -24,7 +28,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         if (!user) {
             throw new UnauthorizedException();
         }
-
+        // passport automatically assigns user to the request ie req.user
         return user;
     }
 }

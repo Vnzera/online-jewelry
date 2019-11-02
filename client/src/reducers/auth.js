@@ -20,7 +20,8 @@ export default function (state = initialState, action) {
 
     switch (type) {
         case USER_LOADED:
-            return { // auth route should return user entity without password
+            // user payload should include name, email and password
+            return {
                 ...state,
                 isAuthenticated: true,
                 loading: false,

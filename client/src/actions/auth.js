@@ -19,8 +19,7 @@ export const loadUser = () => async dispatch => {
 
     try {
         // ping route for verifying tokens
-        // this route isn't created yet so tokens will be removed if they navigate away from register page
-        const res = await axios.get('/auth');
+        const res = await axios.get('/auth/verify');
 
         dispatch({
             type: USER_LOADED,
