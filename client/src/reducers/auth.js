@@ -20,7 +20,7 @@ export default function (state = initialState, action) {
 
     switch (type) {
         case USER_LOADED:
-            // user payload should include name, email and password
+            // user payload should include name, email and other info we can use to construct the Account page
             return {
                 ...state,
                 isAuthenticated: true,

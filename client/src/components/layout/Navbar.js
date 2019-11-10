@@ -57,6 +57,8 @@ Navbar.propTypes = {
     auth: PropTypes.object.isRequired
 }
 
+// we're creating an auth prop and setting it equal to our redux store's auth object aka the values we defined as initialState in our reducers/auth.js file
+// we also have initialState defined in our store.js file but we defined default values in the reducer file
 const mapStateToProps = state => ({
     auth: state.auth
 });

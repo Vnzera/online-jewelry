@@ -21,6 +21,7 @@ export const loadUser = () => async dispatch => {
         // ping route for verifying tokens
         const res = await axios.get('/auth/verify');
 
+        // res.data should include user data that we can use to customize the Accounts page
         dispatch({
             type: USER_LOADED,
             payload: res.data

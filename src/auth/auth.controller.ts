@@ -12,7 +12,7 @@ export class AuthController {
 
     // '/' route for verifying json web token
     // this is where you send back the user info without the password
-    // this includes name and email etc...
+    // this includes name and email etc which will be used to construct their Account page
     // maybe include name field in sign up form...
     @Get('/verify')
     verify(@Body('x-auth-token') token: string) {
