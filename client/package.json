@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:styles": "postcss tailwind.css -o src/styles.css",
-    "prebuild": "npm build:styles",
+    "prebuild": "NODE_ENV=production npm build:styles",
     "prestart": "npm build:styles"
   },
   "eslintConfig": {
