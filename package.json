@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "client": "npm start --prefix client",
+    "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run start:dev\" \"npm run client\"",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",

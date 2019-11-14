@@ -21,9 +21,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:styles": "postcss tailwind.css -o src/styles.css",
-    "prebuild": "NODE_ENV=production npm build:styles",
-    "prestart": "npm build:styles"
+    "build:styles": "postcss src/tailwind.css -o src/styles.css",
+    "prebuild": "NODE_ENV=production npm run build:styles",
+    "prestart": "npm run build:styles"
   },
   "eslintConfig": {
     "extends": "react-app"
