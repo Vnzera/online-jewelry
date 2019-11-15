@@ -15,6 +15,7 @@ module.exports = {
     plugins: [
         require('tailwindcss'),
         require('autoprefixer'),
+        // the following adds purgecss only for production mode since we don't need to purge css for development mode
         ...process.env.NODE_ENV === 'production'
             ? [purgecss]
             : []

@@ -1,3 +1,4 @@
 @tailwind base;
 @tailwind components;
+/* classes composing tailwinds utility classes belong here  */
 @tailwind utilities;
